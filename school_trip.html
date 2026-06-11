@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Trip - 10VP1</title>
+    <style>
+        /* Base Styles & Theme */
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Accent Blue Colors */
+        :root {
+            --electric-blue: #00e5ff;
+            --deep-blue: #0077ff;
+            --dark-card: #1a1a1a;
+        }
+
+        /* Header / Welcome Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #001f3f 0%, #0d0d0d 100%);
+            border-bottom: 2px solid var(--electric-blue);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--electric-blue);
+        }
+
+        .class-tag {
+            display: inline-block;
+            background-color: var(--deep-blue);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            box-shadow: 0 0 10px var(--deep-blue);
+        }
+
+        .welcome-text {
+            font-size: 1.3rem;
+            color: #b0c4de;
+            margin-top: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Planning Grid Sections */
+        .planner-section {
+            background-color: var(--dark-card);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .planner-section:hover {
+            transform: translateY(-5px);
+            border-color: var(--electric-blue);
+        }
+
+        .planner-section h2 {
+            color: var(--electric-blue);
+            margin-top: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Option Buttons / Cards */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            background-color: #262626;
+            color: #fff;
+            border: 2px solid #444;
+            padding: 15px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            background-color: var(--deep-blue);
+            border-color: var(--electric-blue);
+            transform: scale(1.05);
+        }
+
+        /* State for selected buttons */
+        .option-btn.active {
+            background-color: var(--electric-blue);
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 15px var(--electric-blue);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background-color: var(--dark-card);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-section h2 {
+            color: var(--electric-blue);
+            margin-top: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 150px;
+            background-color: #262626;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        /* Fun placeholders using CSS gradients to look cool without needing external images */
+        .gallery-item:nth-child(1) { background: linear-gradient(45deg, #001f3f, var(--deep-blue)); }
+        .gallery-item:nth-child(2) { background: linear-gradient(45deg, #111, #00e5ff); }
+        .gallery-item:nth-child(3) { background: linear-gradient(45deg, var(--deep-blue), #0d0d0d); }
+        .gallery-item:nth-child(4) { background: linear-gradient(45deg, #00e5ff, #001f3f); }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--electric-blue);
+            color: #fff;
+        }
+
+        .gallery-item span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Trip</h1>
+        <div class="class-tag">Class 10VP1</div>
+        <p class="welcome-text">Welcome to our website</p>
+    </header>
+
+    <div class="container">
+
+        <div class="planner-section">
+            <h2>📅 1. When?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">Day</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Night</button>
+            </div>
+        </div>
+
+        <div class="planner-section">
+            <h2>🚀 2. How?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">Car</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Plane</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Bus</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Train</button>
+            </div>
+        </div>
+
+        <div class="planner-section">
+            <h2>⛺ 3. Where are you staying?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">Tent</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Hotel</button>
+            </div>
+        </div>
+
+        <div class="planner-section">
+            <h2>🎯 4. What activities?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">Cinema</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Minigolf</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Water Park</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Trampoline Park</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Sight seeing</button>
+            </div>
+        </div>
+
+        <div class="planner-section">
+            <h2>🌍 5. Where?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">Switzerland</button>
+                <button class="option-btn" onclick="toggleSelect(this)">France</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Germany</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Italy</button>
+                <button class="option-btn" onclick="toggleSelect(this)">USA</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Spain</button>
+                <button class="option-btn" onclick="toggleSelect(this)">Venezuela</button>
+            </div>
+        </div>
+
+        <div class="planner-section">
+            <h2>⏳ 6. How many days?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="toggleSelect(this)">1</button>
+                <button class="option-btn" onclick="toggleSelect(this)">3</button>
+                <button class="option-btn" onclick="toggleSelect(this)">5</button>
+                <button class="option-btn" onclick="toggleSelect(this)">7</button>
+                <button class="option-btn" onclick="toggleSelect(this)">14</button>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>📸 10VP1 Memory Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">🚌 <span>Road Trip Vibes</span></div>
+                <div class="gallery-item">🍕 <span>Lunch Break</span></div>
+                <div class="gallery-item">🎉 <span>Best Class Ever</span></div>
+                <div class="gallery-item">🗺️ <span>Exploring</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Class 10VP1 - All Rights Reserved. Let's make this trip happen!
+    </footer>
+
+    <script>
+        function toggleSelect(button) {
+            // Find all buttons in the same section
+            const parent = button.parentElement;
+            const buttons = parent.querySelectorAll('.option-btn');
+            
+            // If it's the activity section, allow multiple choices! Otherwise, just pick one.
+            const isActivity = parent.parentElement.innerHTML.includes('What activities?');
+            
+            if (!isActivity) {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            } else {
+                button.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>
