@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Trip - Class Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0A0A0C',
+                            dark: '#121218',
+                            darker: '#161622',
+                            blue: '#1E40AF',
+                            electric: '#3B82F6',
+                            neon: '#60A5FA',
+                            cyan: '#06B6D4'
+                        }
+                    },
+                    boxShadow: {
+                        'neon-glow': '0 0 20px rgba(59, 130, 246, 0.35)',
+                        'neon-subtle': '0 0 10px rgba(96, 165, 250, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0A0A0C;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #121218;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-brand-electric selection:text-black">
+
+    <!-- Elegant Toast Notification (No Browser Alerts) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-brand-electric text-black font-bold px-6 py-4 rounded-xl shadow-neon-glow flex items-center space-x-3 pointer-events-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span id="toast-message">Voted successfully!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-brand-black/80 backdrop-blur-md border-b border-neutral-800">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-brand-neon flex items-center justify-center shadow-neon-glow">
+                    <span class="text-black font-black text-xl">ST</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight">School<span class="text-brand-neon">Trip</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-neutral-400">
+                <a href="#choices-section" class="hover:text-brand-neon transition-colors">1. Choices</a>
+                <a href="#activities-section" class="hover:text-brand-neon transition-colors">2. Suggestions</a>
+                <a href="#checklist-section" class="hover:text-brand-neon transition-colors">3. Checklist</a>
+            </div>
+
+            <div>
+                <a href="#choices-section" class="bg-brand-electric/10 hover:bg-brand-electric/20 text-brand-neon border border-brand-electric/30 px-5 py-2.5 rounded-xl text-sm font-bold transition-all">
+                    Vote Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="relative overflow-hidden py-20 lg:py-28 border-b border-neutral-900">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <!-- Badges -->
+            <div class="inline-flex items-center space-x-2 bg-neutral-900/80 border border-neutral-800 px-4 py-1.5 rounded-full mb-6">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-neon animate-pulse"></span>
+                <span class="text-xs uppercase tracking-widest font-bold text-neutral-400">Class of 2026</span>
+            </div>
+
+            <!-- Welcome Title -->
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6">
+                Our Epic <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon via-brand-electric to-brand-cyan">School Trip</span>
+            </h1>
+
+            <!-- Welcome Text -->
+            <p class="text-lg md:text-xl text-neutral-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                Welcome to this website! This is our interactive digital space to plan, customize, and vote on everything related to our unforgettable class adventure.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content Sections Container -->
+    <main class="max-w-5xl mx-auto px-6 py-16 space-y-24 w-full">
+
+        <!-- SECTION 1: Give us 2 Choices -->
+        <section id="choices-section" class="scroll-mt-24">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-brand-neon text-sm font-extrabold tracking-widest uppercase">Section 1</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">Give Us 2 Choices</h2>
+                <p class="text-neutral-400 mt-2">Which kind of adventure is calling our name? Cast your vote below to make your voice heard!</p>
+            </div>
+
+            <!-- Voting Cards & Live Visuals -->
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Choice 1: The Electric Blue Metropolis -->
+                <div class="bg-brand-dark border border-neutral-800 rounded-3xl p-8 flex flex-col justify-between hover:border-brand-neon/40 transition-all duration-300 relative overflow-hidden group shadow-neon-subtle">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-electric/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-brand-blue/30 text-brand-neon text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider">Choice A</span>
+                            <span id="vote-count-a-badge" class="text-xs text-neutral-500 font-semibold">0 votes</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 group-hover:text-brand-neon transition-colors">Neon City & Amusement Park</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                            High-speed rollercoasters, science museum explorations, custom arcade sessions, and bright city lights. Perfect for thrill-seekers and technology fans!
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="castVote('A')" class="w-full bg-brand-electric hover:bg-brand-neon hover:text-black text-white font-bold py-3.5 px-6 rounded-2xl transition-all duration-200 flex items-center justify-center space-x-2 active:scale-95 shadow-lg">
+                            <span>Vote for Choice A</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Choice 2: The Deep Blue Wilderness -->
+                <div class="bg-brand-dark border border-neutral-800 rounded-3xl p-8 flex flex-col justify-between hover:border-brand-cyan/40 transition-all duration-300 relative overflow-hidden group shadow-neon-subtle">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-cyan-950 text-brand-cyan text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider">Choice B</span>
+                            <span id="vote-count-b-badge" class="text-xs text-neutral-500 font-semibold">0 votes</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 group-hover:text-brand-cyan transition-colors">Mountain Forest Resort</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                            Zip-lining canopy tours, cozy evening campfires, starry skies, hiking trails, and collaborative team building in an epic nature lodge.
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="castVote('B')" class="w-full bg-neutral-800 hover:bg-brand-cyan hover:text-black text-white font-bold py-3.5 px-6 rounded-2xl transition-all duration-200 flex items-center justify-center space-x-2 active:scale-95">
+                            <span>Vote for Choice B</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Live Poll Progress -->
+            <div class="mt-12 bg-brand-dark border border-neutral-800 rounded-3xl p-8 max-w-3xl mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-bold tracking-wide">Live Poll Results</span>
+                    <span id="total-votes-label" class="text-xs bg-neutral-800 px-3 py-1 rounded-full text-neutral-400">Total votes: 0</span>
+                </div>
+                
+                <!-- Progress bar track -->
+                <div class="h-6 w-full bg-neutral-900 rounded-full overflow-hidden flex relative">
+                    <div id="bar-a" class="h-full bg-gradient-to-r from-brand-blue to-brand-electric transition-all duration-500 w-[50%] flex items-center justify-start pl-3 text-xs font-black text-white">
+                        <span id="perc-a-text">Choice A (50%)</span>
+                    </div>
+                    <div id="bar-b" class="h-full bg-brand-cyan transition-all duration-500 w-[50%] flex items-center justify-end pr-3 text-xs font-black text-black">
+                        <span id="perc-b-text">(50%) Choice B</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-3 text-xs text-neutral-400">
+                    <span>⚡ Thrill Seekers</span>
+                    <span>🌿 Nature Explorers</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Interactive Suggestions -->
+        <section id="activities-section" class="scroll-mt-24">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-brand-neon text-sm font-extrabold tracking-widest uppercase">Section 2</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">Class Activity Suggestion Box</h2>
+                <p class="text-neutral-400 mt-2">Have a cool game, workshop, or stopover idea? Add it to the shared board so everyone can vote on it!</p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8 items-start">
+                <!-- Add Suggestion Form -->
+                <div class="lg:col-span-2 bg-brand-dark border border-neutral-800 rounded-3xl p-6 lg:sticky lg:top-24">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-electric"></span>
+                        Propose an Activity
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-neutral-400 mb-2 uppercase tracking-wide">Activity Name</label>
+                            <input id="input-title" type="text" placeholder="e.g., Midnight Campfire Trivia" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-electric transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-neutral-400 mb-2 uppercase tracking-wide">Description</label>
+                            <textarea id="input-desc" placeholder="Briefly explain what we will do..." rows="3" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-electric transition-colors resize-none"></textarea>
+                        </div>
+                        <button onclick="submitSuggestion()" class="w-full bg-brand-electric hover:bg-brand-neon text-white hover:text-black font-bold py-3 rounded-xl transition-all duration-200">
+                            Add to Board
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Board Grid -->
+                <div class="lg:col-span-3 space-y-4">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-sm font-semibold text-neutral-400">Suggested Ideas</span>
+                        <span id="board-count" class="text-xs text-neutral-500">3 ideas submitted</span>
+                    </div>
+
+                    <div id="suggestions-container" class="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar">
+                        <!-- Default templates injected by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: The Interactive Packing Checklist -->
+        <section id="checklist-section" class="scroll-mt-24">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-brand-neon text-sm font-extrabold tracking-widest uppercase">Section 3</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">Trip Preparation Checklist</h2>
+                <p class="text-neutral-400 mt-2">Get packed and organized! Check off items as you prepare. Keep track of your progress.</p>
+            </div>
+
+            <div class="bg-brand-dark border border-neutral-800 rounded-3xl p-8 max-w-3xl mx-auto">
+                <!-- Checklist Progress Header -->
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8 pb-6 border-b border-neutral-800">
+                    <div>
+                        <h3 class="text-xl font-bold">Your Gear Checklist</h3>
+                        <p class="text-xs text-neutral-400 mt-1">Check things off as you slip them into your backpack.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs text-neutral-400">Preparation status:</span>
+                        <span id="progress-percent" class="bg-brand-electric/10 border border-brand-electric/30 text-brand-neon text-xs font-black px-3.5 py-1.5 rounded-full">0% Ready</span>
+                    </div>
+                </div>
+
+                <!-- Checklist Items -->
+                <div class="space-y-3.5" id="checklist-container">
+                    <!-- Checkboxes injected by JS -->
+                </div>
+
+                <!-- Add Custom Item Input -->
+                <div class="mt-8 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row gap-3">
+                    <input id="custom-item-input" type="text" placeholder="Add custom item (e.g., Polaroid camera...)" class="flex-1 bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-electric transition-colors">
+                    <button onclick="addCustomChecklistItem()" class="bg-neutral-800 hover:bg-brand-electric text-white font-bold px-6 py-3 rounded-xl transition-all duration-200">
+                        Add Item
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Travel Trivia / Fun FAQ Section -->
+    <section class="max-w-4xl mx-auto px-6 mb-24 w-full">
+        <div class="bg-gradient-to-r from-brand-blue/20 to-brand-cyan/20 border border-brand-electric/20 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+            <h3 class="text-2xl font-bold mb-4">Did You Know? 🎒</h3>
+            <p id="trivia-text" class="text-neutral-300 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-6">
+                "Class trips are proven to boost friendships and make unforgettable school memories that last forever!"
+            </p>
+            <button onclick="refreshTrivia()" class="inline-flex items-center space-x-2 text-xs font-bold text-brand-neon hover:text-white transition-colors">
+                <svg class="w-4 h-4 animate-spin-slow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 10H18"/></svg>
+                <span>Show another fun fact</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-neutral-900 py-12 text-center text-sm text-neutral-500">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-2">
+                <span class="font-extrabold text-neutral-300">School Trip Hub</span>
+                <span class="text-neutral-600">|</span>
+                <span>Designed for our class.</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="#choices-section" class="hover:text-neutral-300 transition-colors">Choices</a>
+                <a href="#activities-section" class="hover:text-neutral-300 transition-colors">Suggestions</a>
+                <a href="#checklist-section" class="hover:text-neutral-300 transition-colors">Checklist</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Scripts -->
+    <script>
+        // App State Management (In-Memory)
+        const state = {
+            votes: {
+                A: 18, // Simulated starting votes to feel interactive
+                B: 14
+            },
+            suggestions: [
+                { id: 1, title: 'Bus Karaoke Championship', desc: 'A competitive singing game with fun prizes during our 3-hour journey.', upvotes: 9 },
+                { id: 2, title: 'Nighttime Hide & Seek', desc: 'Using flashlights in a designated safe park or lobby area.', upvotes: 14 },
+                { id: 3, title: 'Epic Pillow Fight / Pyjama Party', desc: 'Chill social lounge night with snacks and board games.', upvotes: 5 }
+            ],
+            checklist: [
+                { id: 1, name: 'Permission Slip signed', checked: true },
+                { id: 2, name: 'Phone charger & Power bank', checked: false },
+                { id: 3, name: 'Comfy travel shoes', checked: false },
+                { id: 4, name: 'Snacks for the travel bus', checked: false },
+                { id: 5, name: 'Pocket money', checked: false }
+            ]
+        };
+
+        const facts = [
+            "Class trips are proven to boost class friendships and make unforgettable school memories!",
+            "Did you know? The longest class trip on record traveled over 4,000 miles across entire borders!",
+            "Voting on decisions beforehand makes everyone 85% happier with the destination choice.",
+            "Always pack light! The average student brings 30% more clothing than they actually wear on trips."
+        ];
+
+        // Toast Helper
+        function triggerToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            // Show toast
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Section 1: Voting System
+        function castVote(option) {
+            state.votes[option] += 1;
+            triggerToast(`Thank you! Your vote for Choice ${option} has been recorded.`);
+            renderPolls();
+        }
+
+        function renderPolls() {
+            const total = state.votes.A + state.votes.B;
+            const percentageA = total > 0 ? Math.round((state.votes.A / total) * 100) : 50;
+            const percentageB = 100 - percentageA;
+
+            // Update individual count labels
+            document.getElementById('vote-count-a-badge').innerText = `${state.votes.A} votes`;
+            document.getElementById('vote-count-b-badge').innerText = `${state.votes.B} votes`;
+            document.getElementById('total-votes-label').innerText = `Total votes: ${total}`;
+
+            // Update Progress bars
+            const barA = document.getElementById('bar-a');
+            const barB = document.getElementById('bar-b');
+
+            barA.style.width = `${percentageA}%`;
+            barB.style.width = `${percentageB}%`;
+
+            document.getElementById('perc-a-text').innerText = `Choice A (${percentageA}%)`;
+            document.getElementById('perc-b-text').innerText = `(${percentageB}%) Choice B`;
+        }
+
+        // Section 2: Suggestion Board
+        function renderSuggestions() {
+            const container = document.getElementById('suggestions-container');
+            const countLabel = document.getElementById('board-count');
+            
+            // Sort suggestions by upvotes descending
+            const sorted = [...state.suggestions].sort((a, b) => b.upvotes - a.upvotes);
+            
+            countLabel.innerText = `${sorted.length} ideas submitted`;
+            container.innerHTML = '';
+
+            sorted.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "bg-neutral-900 border border-neutral-800 rounded-2xl p-5 flex items-start justify-between hover:border-brand-neon/20 transition-all";
+                div.innerHTML = `
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-neutral-100 text-base">${escapeHTML(item.title)}</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed">${escapeHTML(item.desc)}</p>
+                    </div>
+                    <button onclick="upvoteSuggestion(${item.id})" class="flex flex-col items-center justify-center bg-brand-dark hover:bg-brand-electric hover:text-white border border-neutral-800 rounded-xl px-3.5 py-2 transition-all">
+                        <svg class="w-4 h-4 text-brand-neon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="text-xs font-bold mt-1">${item.upvotes}</span>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function submitSuggestion() {
+            const titleInput = document.getElementById('input-title');
+            const descInput = document.getElementById('input-desc');
+
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+
+            if (!title || !desc) {
+                triggerToast('Please fill out both the title and the description!');
+                return;
+            }
+
+            const newSuggestion = {
+                id: Date.now(),
+                title: title,
+                desc: desc,
+                upvotes: 1
+            };
+
+            state.suggestions.push(newSuggestion);
+            titleInput.value = '';
+            descInput.value = '';
+            
+            triggerToast('Added your exciting suggestion to the board!');
+            renderSuggestions();
+        }
+
+        function upvoteSuggestion(id) {
+            const idea = state.suggestions.find(item => item.id === id);
+            if (idea) {
+                idea.upvotes += 1;
+                renderSuggestions();
+                triggerToast('Upvoted suggestion!');
+            }
+        }
+
+        // Section 3: Interactive Checklist
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+
+            state.checklist.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = `flex items-center justify-between p-4 rounded-xl border transition-all ${item.checked ? 'bg-brand-blue/5 border-brand-electric/30 text-neutral-400' : 'bg-neutral-900 border-neutral-800 text-neutral-100'}`;
+                
+                itemDiv.innerHTML = `
+                    <div class="flex items-center space-x-3.5 cursor-pointer flex-1 select-none" onclick="toggleCheck(${item.id})">
+                        <div class="w-6 h-6 rounded-md flex items-center justify-center border-2 transition-all ${item.checked ? 'bg-brand-electric border-brand-electric' : 'border-neutral-600'}">
+                            ${item.checked ? '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : ''}
+                        </div>
+                        <span class="text-sm font-semibold ${item.checked ? 'line-through opacity-70' : ''}">${escapeHTML(item.name)}</span>
+                    </div>
+                    <button onclick="removeChecklistItem(${item.id})" class="text-neutral-500 hover:text-red-400 p-1.5 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            updateProgress();
+        }
+
+        function toggleCheck(id) {
+            const item = state.checklist.find(i => i.id === id);
+            if (item) {
+                item.checked = !item.checked;
+                renderChecklist();
+            }
+        }
+
+        function removeChecklistItem(id) {
+            state.checklist = state.checklist.filter(i => i.id !== id);
+            renderChecklist();
+            triggerToast('Item removed from your list.');
+        }
+
+        function addCustomChecklistItem() {
+            const input = document.getElementById('custom-item-input');
+            const val = input.value.trim();
+
+            if (!val) {
+                triggerToast('Please type an item name!');
+                return;
+            }
+
+            state.checklist.push({
+                id: Date.now(),
+                name: val,
+                checked: false
+            });
+
+            input.value = '';
+            renderChecklist();
+            triggerToast('Added custom item!');
+        }
+
+        function updateProgress() {
+            const total = state.checklist.length;
+            const checked = state.checklist.filter(i => i.checked).length;
+            const percentage = total > 0 ? Math.round((checked / total) * 100) : 0;
+
+            document.getElementById('progress-percent').innerText = `${percentage}% Ready`;
+        }
+
+        // Trivia Refresher
+        function refreshTrivia() {
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            const factText = document.getElementById('trivia-text');
+            factText.style.opacity = 0;
+            setTimeout(() => {
+                factText.innerText = `"${randomFact}"`;
+                factText.style.opacity = 1;
+            }, 200);
+        }
+
+        // HTML Sanitizer
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        // Initialize App
+        window.onload = function() {
+            renderPolls();
+            renderSuggestions();
+            renderChecklist();
+        };
+    </script>
+</body>
+</html>
